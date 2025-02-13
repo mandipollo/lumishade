@@ -36,64 +36,62 @@ const Navbar = () => {
 
 	return (
 		<header className=" fixed top-0 left-0 right-0 z-40 flex flex-col text-sm  flex-1 w-full items-center border border-b border-gray-400 border-opacity-25">
-			<section className="bg-primaryWhite  flex p-2 w-full h-12  text-primaryDarkText">
-				<section className="flex w-1/4 flex-row gap-2 items-center">
-					<Image
-						loading="lazy"
-						src="/svg/logo.svg"
-						width={10}
-						height={10}
-						alt="logo"
-						className="h-8 w-8 "
-					/>
-
-					<Link href="/">
+			<div className="bg-primaryWhite  flex justify-between p-2 w-full h-12  text-primaryDarkText">
+				<nav className="flex w-1/4 flex-row gap-2 items-center">
+					<Link href="/" className="flex justify-center items-center">
+						<Image
+							loading="lazy"
+							src="/svg/logo.svg"
+							width={10}
+							height={10}
+							alt="logo"
+							className="h-8 w-8 "
+						/>
 						<p className="text-md  underline underline-offset-2 decoration-[#D39032]">
 							Lumishade.
 						</p>
 					</Link>
-				</section>
+				</nav>
 
-				<section className=" flex w-1/2 justify-center items-center flex-1">
-					<button
-						onClick={handleOpen}
-						className="flex  justify-center items-center gap-2"
-					>
-						<div className=" flex relative  justify-center items-center gap-1">
-							<span
-								className={`${
-									isOpen ? "-rotate-45 -translate-y-1  " : ""
-								} transition-transform duration-700 absolute top-[2px] right-1 h-1 border-b  w-6 border-borderColorDark`}
-							></span>
-							<span
-								className={`${
-									isOpen ? "rotate-45 translate-x-1 translate-y-1 " : ""
-								} transition-transform duration-700 absolute -top-[6px] right-1 h-1 border-b  w-6 border-borderColorDark `}
-							></span>
-						</div>
+				<button
+					type="button"
+					onClick={handleOpen}
+					className="flex justify-center items-center"
+				>
+					<div className=" flex relative  justify-center items-center gap-1">
+						<span
+							className={`${
+								isOpen ? "-rotate-45 -translate-y-1  " : ""
+							} transition-transform duration-700 absolute top-[2px] right-1 h-1 border-b  w-6 border-borderColorDark`}
+						></span>
+						<span
+							className={`${
+								isOpen ? "rotate-45 translate-x-1 translate-y-1 " : ""
+							} transition-transform duration-700 absolute -top-[6px] right-1 h-1 border-b  w-6 border-borderColorDark `}
+						></span>
+					</div>
 
-						<div className="flex relative font-extralight  bg-gray-400">
+					<div className="flex relative font-extralight  bg-gray-400">
+						<motion.p
+							className="flex absolute -top-2"
+							variants={opacity}
+							animate={isOpen ? "closed" : "open"}
+						>
+							MENU
+						</motion.p>
+						{isOpen && (
 							<motion.p
 								className="flex absolute -top-2"
 								variants={opacity}
-								animate={isOpen ? "closed" : "open"}
+								animate={isOpen ? "open" : "closed"}
 							>
-								MENU
+								CLOSE
 							</motion.p>
-							{isOpen && (
-								<motion.p
-									className="flex absolute -top-2"
-									variants={opacity}
-									animate={isOpen ? "open" : "closed"}
-								>
-									CLOSE
-								</motion.p>
-							)}
-						</div>
-					</button>
-				</section>
+						)}
+					</div>
+				</button>
 
-				<motion.section
+				<motion.nav
 					variants={opacity}
 					animate={isOpen ? "closed" : "open"}
 					className="flex items-center gap-2 justify-end w-1/4"
@@ -115,8 +113,8 @@ const Navbar = () => {
 						/>
 						<p className="font-extralight">CART ({cartItems})</p>
 					</Link>
-				</motion.section>
-			</section>
+				</motion.nav>
+			</div>
 
 			<AnimatePresence mode="wait">
 				{isOpen && <Nav handleOpen={handleOpen} isOpen={isOpen} />}

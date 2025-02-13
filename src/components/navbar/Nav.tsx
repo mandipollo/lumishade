@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Overlay from "./Overlay";
+import Image from "next/image";
 
 const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 	handleOpen,
@@ -17,7 +18,7 @@ const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 		{ href: "/", link: "HOME" },
 
 		{ href: "/shop", link: "SHOP" },
-		{ href: "/about", link: "ABOUT US" },
+
 		{
 			href: "/contact",
 			link: "CONTACT",
@@ -26,6 +27,7 @@ const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 			href: "/cart",
 			link: "CART",
 		},
+		{ href: "/about", link: "ABOUT US" },
 	];
 	const spanClass =
 		"block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-highlight";
@@ -62,7 +64,7 @@ const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 
 	return (
 		<motion.div
-			className="flex flex-col w-full z-10"
+			className="flex flex-col w-full z-10 "
 			variants={height}
 			initial="initial"
 			animate="enter"
@@ -72,7 +74,7 @@ const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 				variants={container}
 				initial="hidden"
 				animate="show"
-				className="flex w-full md:flex-row flex-col h-1/3 bg-primaryWhite"
+				className="flex w-full md:flex-row flex-col h-1/3 bg-primaryWhite "
 			>
 				<nav className="flex p-2 md:w-1/2 w-full  md:justify-center md:items-center ">
 					<ul className="flex w-full flex-wrap flex-row gap-4 text-primary">
@@ -86,7 +88,7 @@ const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 							>
 								<Link
 									href={link.href}
-									className="xl:text-6xl lg:text-4xl md:text-2xl text-xl font-extralight"
+									className=" text-xl md:text-2xl lg:text-4xl xl:text-6xl font-extralight"
 								>
 									{pathname === link.href ? <em>{link.link}</em> : link.link}
 									<span className={spanClass}></span>
@@ -99,10 +101,8 @@ const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 				<motion.div
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
-					className="flex   md:w-1/2 h-full justify-center items-center"
-				>
-					Image show
-				</motion.div>
+					className="flex md:w-1/2 h-full justify-end items-center"
+				></motion.div>
 			</motion.div>
 
 			<Overlay handleOpen={handleOpen} />
