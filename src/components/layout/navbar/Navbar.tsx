@@ -96,8 +96,8 @@ const Navbar = () => {
 					animate={isOpen ? "closed" : "open"}
 					className="flex items-center gap-2 justify-end w-1/4"
 				>
-					<Link href="/shop">
-						<p className="font-extralight">SHOP</p>
+					<Link href="/login">
+						<p className="font-extralight">LOGIN</p>
 					</Link>
 					<Link
 						href="/cart"

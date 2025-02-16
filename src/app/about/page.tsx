@@ -9,38 +9,33 @@ export const metadata: Metadata = {
 };
 const About = () => {
 	return (
-		<main className="flex relative flex-row w-full h-full">
-			<section className="flex relative flex-col w-1/2  p-2">
-				<Link
-					href="/"
-					className="sticky top-10 rounded-full p-2 bg-primary h-10 w-10"
-				>
-					<Image
-						src="/svg/back.svg"
-						alt="back to home"
-						width={20}
-						height={20}
-					/>
-				</Link>
-				<article className="sticky p-10 top-1/3 left-1/2 text-black justify-center  flex flex-col">
+		<section
+			aria-labelledby="about_us"
+			className="flex relative flex-row w-full h-full"
+		>
+			<h1 id="about_us" className="sr-only">
+				About us
+			</h1>
+			<section className="flex flex-col w-1/2  p-2">
+				<div className="sticky p-10 top-1/3 left-1/2 text-black justify-center  flex flex-col">
 					<p className="text-xs">WHO WE ARE</p>
 					<p className="text-2xl md:text-6xl font-medium text-primaryDarkText">
 						Founded in 2000, our company has been a pioneer in sun protection
-						for over a century.
+						for over decades.
 					</p>
-				</article>
+				</div>
 			</section>
 			<section className="w-1/2 h-full overflow-auto flex flex-col">
 				<div className="flex w-full relative min-h-screen">
 					<Image
 						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 						src="/images/teamImg.webp"
-						alt="team image"
+						alt="image showcasing a team of womens"
 						fill
 						className="object-cover "
 					/>
 				</div>
-				<article className="flex space-y-4 flex-col p-10 bg-white w-full relative min-h-screen justify-center ">
+				<article className="flex gap-4 flex-col p-10 w-full relative min-h-screen justify-center ">
 					<p> In 2000,</p>
 					<p>
 						nestled in a small coastal town, a passionate botanist and a chemist
@@ -61,7 +56,7 @@ const About = () => {
 					</p>
 				</article>
 			</section>
-		</main>
+		</section>
 	);
 };
 

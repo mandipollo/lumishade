@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import LinkButton from "../LinkButton";
+import LinkButton from "../../common/ui/LinkButton";
 import Link from "next/link";
 
 const InfoFooter = () => {
 	return (
-		<main className="h-96  flex justify-center items-center relative w-full overflow-hidden">
-			<section className="z-10 absolute top-0 left-0 flex gap-10  flex-row p-2 ">
+		<section className="h-96  flex justify-center items-center relative w-full overflow-hidden">
+			<div className="z-10 absolute top-0 left-0 flex gap-10  flex-row p-2 ">
 				<nav>
 					<ul className="flex flex-col  ">
 						<li>
@@ -35,9 +35,9 @@ const InfoFooter = () => {
 						</li>
 					</ul>
 				</nav>
-			</section>
+			</div>
 
-			<section className="z-10 absolute bottom-0 left-0 flex gap-10  flex-row p-2 ">
+			<div className="z-10 absolute bottom-0 left-0 flex gap-10  flex-row p-2 ">
 				<Link
 					href="http://www.mandipollo.uk"
 					target="_blank"
@@ -45,7 +45,7 @@ const InfoFooter = () => {
 				>
 					MADE BY: MANDIPOLLO
 				</Link>
-			</section>
+			</div>
 
 			<div className="flex w-full h-full relative ">
 				<Image
@@ -56,7 +56,7 @@ const InfoFooter = () => {
 					alt="lotion showcase"
 				></Image>
 			</div>
-		</main>
+		</section>
 	);
 };
 

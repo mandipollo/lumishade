@@ -11,9 +11,19 @@ const ShopContent = () => {
 		filterType === "all"
 			? Dummy_Data
 			: Dummy_Data.filter(products => products.category === filterType);
+
 	return (
-		<section className="flex w-full h-full ">
-			<ul className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4 h-full w-full">
+		<section
+			className="flex w-full h-full"
+			aria-labelledby="shop-content-heading"
+		>
+			<h2 id="shop-content-heading" className="sr-only">
+				Product Listings
+			</h2>
+			<ul
+				className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4 h-full w-full"
+				role="list"
+			>
 				{filteredData.map(product => (
 					<Product key={product.id} product={product} />
 				))}

@@ -9,7 +9,7 @@ export default function ContactPage() {
 	const size = isHovered ? 200 : 40;
 
 	return (
-		<main className="relative w-full h-screen ">
+		<section className="relative w-full h-screen ">
 			{x && y && (
 				<motion.div
 					className="absolute flex justify-center items-center  inset-0 bg-[#ec4e39] text-black"
@@ -37,12 +37,12 @@ export default function ContactPage() {
 				</motion.div>
 			)}
 
-			<section className="flex items-center justify-start h-1/2 p-2 ">
-				<h1 className=" text-6xl md:text-8xl ">CONTACT</h1>
-			</section>
-			<section className="flex items-center justify-end h-1/2  p-2">
-				<h1 className="text-2xl md:text-8xl ">mandipollo.uk</h1>
-			</section>
-		</main>
+			<span className="flex items-center justify-start h-1/2 p-2 ">
+				<p className=" text-6xl md:text-8xl ">CONTACT</p>
+			</span>
+			<span className="flex items-center justify-end h-1/2  p-2">
+				<p className=" text-6xl  md:text-8xl ">mandipollo.uk</p>
+			</span>
+		</section>
 	);
 }

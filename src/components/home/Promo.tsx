@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { useScroll, useTransform, motion } from "framer-motion";
 
-const Description = () => {
+const Promo = () => {
 	// parralex animation
 	const avocadoContainer = useRef(null);
 
@@ -27,8 +27,8 @@ const Description = () => {
 	const y = useTransform(scrollYProgress, [0, 1], ["30vh", "-10vh"]);
 
 	return (
-		<section className="flex md:flex-row gap-2 flex-col px-10">
-			<div className="md:flex hidden md:w-2/5 h-full relative justify-center ">
+		<section className="flex flex-col md:flex-row gap-2 px-4 relative h-screen">
+			<div className=" hidden md:flex md:w-2/5 h-full relative justify-center ">
 				<motion.div
 					ref={avocadoContainer}
 					style={{ y: avY }}
@@ -58,15 +58,12 @@ const Description = () => {
 					/>
 				</motion.div>
 			</div>
-			<article className="flex gap-6 flex-col md:w-3/5 text-primaryDarkText">
-				<h2 className="tracking-widest text-3xl ">
+			<div className="flex flex-col justify-center items-center h-full gap-6 md:w-3/5">
+				<p className="tracking-widest text-3xl ">
 					Glow Like Never Before! Discover your best skin yet with our
 					all-natural, dermatologist-approved skincare line.
-				</h2>
-				<p className="text-sm w-60">
-					Nourish, hydrate, and rejuvenate with ingredients your skin will love.
-					Because your skin deserves the glow!
 				</p>
+
 				<div className="relative w-full h-80 ">
 					<video
 						loop
@@ -75,9 +72,9 @@ const Description = () => {
 						typeof="video/mp4"
 					></video>
 				</div>
-			</article>
+			</div>
 		</section>
 	);
 };
 
-export default Description;
+export default Promo;

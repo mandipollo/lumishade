@@ -1,14 +1,18 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AddToCartButton from "../cart/AddToCartButton";
+import AddToCartButton from "../common/ui/AddToCartButton";
 import { ProductProps } from "../cart/DataTypes";
 
 const Product: FC<{
 	product: ProductProps;
 }> = ({ product }) => {
 	return (
-		<li key={product.id} className="flex flex-col space-y-4 h-96 text-sm">
+		<li
+			role="listitem"
+			key={product.id}
+			className="flex flex-col space-y-4 h-96 text-sm"
+		>
 			<Link
 				href={`/shop/${product.id}`}
 				className="flex justify-center items-center h-full w-full"
@@ -31,12 +35,12 @@ const Product: FC<{
 				</div>
 			</Link>
 
-			<article className="flex justify-between">
+			<div className="flex justify-between">
 				<p>
 					{product.title} - £{product.price}
 				</p>
 				<AddToCartButton product={product} />
-			</article>
+			</div>
 		</li>
 	);
 };

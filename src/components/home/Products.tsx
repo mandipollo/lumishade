@@ -1,64 +1,75 @@
-import React, { useRef } from "react";
+import Image from "next/image";
+import React from "react";
 
-import ProductCard from "./ProductCard";
-import { useScroll, useTransform, motion } from "framer-motion";
-import Button from "../Button";
-import Link from "next/link";
 const Products = () => {
-	const cards = [
-		{
-			id: 1,
-			title: " Sunscreen",
-			image: "/images/objects/img1.jpg",
-		},
-		{
-			id: 2,
-			title: " Cream",
-			image: "/images/objects/img2.jpg",
-		},
-		{
-			id: 3,
-			title: " Mousteriser ",
-			image: "/images/objects/img3.jpg",
-		},
-		{
-			id: 4,
-			title: "Facewash ",
-			image: "/images/objects/img4.jpg",
-		},
-	];
-	const targetRef = useRef<HTMLElement | null>(null);
-
-	const { scrollYProgress } = useScroll({
-		target: targetRef,
-	});
-
-	const x = useTransform(scrollYProgress, [0, 1], ["10%", "-85%"]);
 	return (
-		<section ref={targetRef} className="relative top-0 h-[300vh] ">
-			<div className="sticky  top-0 flex h-screen justify-start items-center overflow-hidden">
-				<motion.div
-					style={{ x }}
-					className="flex justify-center items-center gap-10"
-				>
-					<div className="flex-col space-y-10">
-						<h2 className="md:text-8xl text-4xl">Product Line</h2>
-						<p className="text-sm">
-							Transform your skincare routine with our curated collection of
-							best-selling products. <br></br> From gentle cleansers to
-							luxurious serums, each formula is designed to nourish, protect,
-							and reveal glowing, healthy skin.
-						</p>
-						<div></div>
-						<Link href="/shop">
-							<Button text="View Collection" />
-						</Link>
-					</div>
+		<section className="flex flex-col gap-4 w-full mt-12 px-4 text-2xl text-white">
+			{/* First Row - 2 columns */}
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 ">
+				<figure className="relative w-full h-full aspect-[3/2] ">
+					<Image
+						fill
+						sizes="(max-width: 768px) 100vw, 50vw"
+						className="object-cover"
+						alt="Eco-refill products"
+						src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1739713280/eco-refills_vlk7ul.webp"
+					/>
+					<h3 className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 ">
+						ECO-REFILLS
+					</h3>
+				</figure>
+				<figure className="relative w-full h-full aspect-[3/2]">
+					<Image
+						fill
+						sizes="(max-width: 768px) 100vw, 50vw"
+						className="object-cover"
+						alt="Bestseller products"
+						src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1739713280/bestsellers_jarsjz.webp"
+					/>
+					<h3 className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 ">
+						BEST-SELLERS
+					</h3>
+				</figure>
+			</div>
 
-					{cards.map(card => {
-						return <ProductCard card={card} key={card.id} />;
-					})}
-				</motion.div>
+			{/* Second Row - 3 columns */}
+			<div className="grid grid-cols-2 md:grid-cols-3 gap-4 pb-4">
+				<figure className="relative w-full h-full aspect-square">
+					<Image
+						fill
+						sizes="(max-width: 768px) 100vw, 50vw"
+						className="object-cover"
+						alt="Body care products"
+						src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1739713280/bodycare_dqseve.webp"
+					/>
+					<h3 className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 ">
+						BODY CARE
+					</h3>
+				</figure>
+				<figure className="relative w-full h-full aspect-square">
+					<Image
+						fill
+						sizes="(max-width: 768px) 100vw, 50vw"
+						className="object-cover"
+						alt="Skincare products"
+						src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1739713281/skincare_h81j8x.webp"
+					/>
+					<h3 className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 ">
+						SKINCARE
+					</h3>
+				</figure>
+				<figure className="relative w-full h-full aspect-square">
+					<Image
+						fill
+						sizes="(max-width: 768px) 100vw, 50vw"
+						className="object-cover"
+						alt="Hand care products"
+						src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1739713281/handcare_pcwgpr.webp"
+					/>
+					<h3 className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 ">
+						HAND CARE
+					</h3>
+				</figure>
 			</div>
 		</section>
 	);

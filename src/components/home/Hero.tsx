@@ -3,10 +3,10 @@ import React, { useRef } from "react";
 import Image from "next/image";
 
 import { useScroll, useTransform, motion } from "framer-motion";
-import Button from "../Button";
+import Button from "../common/ui/Button";
 import Link from "next/link";
 
-const Intro = () => {
+const Hero = () => {
 	const container = useRef<HTMLDivElement | null>(null);
 	const { scrollYProgress } = useScroll({
 		target: container,
@@ -33,7 +33,7 @@ const Intro = () => {
 					src="/videos/sunscreen-beach.mp4"
 					typeof="video/mp4"
 					autoPlay
-					loop
+					loop={false}
 					muted
 				></video>
 			</motion.div>
@@ -41,4 +41,4 @@ const Intro = () => {
 	);
 };
 
-export default Intro;
+export default Hero;

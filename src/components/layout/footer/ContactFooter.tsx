@@ -21,17 +21,15 @@ const ContactFooter = () => {
 			className="flex relative items-start min-h-screen w-full p-2 "
 		>
 			<article className="sticky top-20 text-4xl w-1/2">
-				<p>
-					This is a demo site.
-					<br></br>Get in touch with us at <br></br>
-					<a
-						className="hover:text-[#D39032]"
-						href="http://www.mandipollo.uk"
-						target="_blank"
-					>
-						mandipollo.uk
-					</a>
-				</p>
+				<p>This is a demo site.</p>
+				<p>Get in touch with us at </p>
+				<a
+					className="hover:text-[#D39032]"
+					href="http://www.mandipollo.uk"
+					target="_blank"
+				>
+					mandipollo.uk
+				</a>
 			</article>
 		</motion.section>
 	);

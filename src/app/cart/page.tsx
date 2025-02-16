@@ -4,7 +4,7 @@ import React from "react";
 import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { ProductProps } from "@/components/cart/DataTypes";
-import Button from "@/components/Button";
+import Button from "@/components/common/ui/Button";
 
 import RemoveFromCartButton from "@/components/cart/RemoveFromCartButton";
 
@@ -25,12 +25,13 @@ const CartPage = () => {
 		);
 	}
 	return (
-		<main className="flex h-screen flex-col w-full gap-4 justify-center items-center pt-12 p-4">
+		<section className="flex h-screen flex-col w-full gap-4 justify-center items-center p-4">
 			<h2 className="text-4xl">ORDER SUMMARY</h2>
 			<section className="flex flex-col h-full w-full">
-				<ul className="grid md:grid-cols-2 grid-cols-1 gap-4">
+				<ul role="list" className="grid md:grid-cols-2 grid-cols-1 gap-4">
 					{cartItems.map((product: ProductProps) => (
 						<li
+							role="listitem"
 							key={product.id}
 							className="flex flex-row bg-primary p-2 gap-2 rounded-md"
 						>
@@ -47,7 +48,7 @@ const CartPage = () => {
 
 							<div className="flex flex-row justify-between w-full">
 								<div className="flex flex-col justify-between">
-									<h6 className="text-2xl">{product.title}</h6>
+									<p className="text-2xl">{product.title}</p>
 									<p>£{product.price}</p>
 								</div>
 								<RemoveFromCartButton productId={product.id} />
@@ -57,12 +58,12 @@ const CartPage = () => {
 				</ul>
 			</section>
 			<section className="flex w-full  justify-between">
-				<h2>TOTAL PRICE - £{totalPrice.toFixed(2)}</h2>
+				<p>TOTAL PRICE - £{totalPrice.toFixed(2)}</p>
 				<Link href="/contact" className="w-60 h-10">
 					<Button text="PROCEED TO CHECKOUT" />
 				</Link>
 			</section>
-		</main>
+		</section>
 	);
 };
 

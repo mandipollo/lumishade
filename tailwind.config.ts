@@ -9,7 +9,7 @@ const config: Config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				manrope: ["Manrope", "sans-serif"],
+				openSans: ["Open-sans", "sans-serif"],
 			},
 			borderColor: {
 				borderColorDark: "#4D3D30",

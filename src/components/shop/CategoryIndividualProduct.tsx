@@ -6,17 +6,20 @@ const CategoryIndividualProduct: FC<{
 	product: ProductProps;
 }> = ({ product }) => {
 	return (
-		<li key={product.id} className="flex flex-col space-y-4 h-96 text-sm">
+		<li role="listitem" className="flex flex-col gap-4 h-96 text-sm">
 			<Link
 				href={`/shop/${product.id}`}
 				className="flex justify-center items-center h-full w-full"
 			>
 				<div
 					key={product.id}
-					className=" grid h-full w-60  relative bg-primary"
+					className=" grid h-full w-full relative bg-primary"
 				>
 					<Image
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+						sizes="(max-width: 640px) 100vw,
+							(max-width: 768px) 300, 
+							(max-width: 1024px) 350  
+							"
 						loading="lazy"
 						src={product.image}
 						alt={product.title}
@@ -26,11 +29,11 @@ const CategoryIndividualProduct: FC<{
 				</div>
 			</Link>
 
-			<article className="flex justify-between">
+			<div className="flex">
 				<p>
 					{product.title} - £{product.price}
 				</p>
-			</article>
+			</div>
 		</li>
 	);
 };

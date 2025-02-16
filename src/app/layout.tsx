@@ -1,9 +1,9 @@
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/layout/footer/Footer";
 import { FC } from "react";
 import { Metadata } from "next";
 import "@/app/globals.css";
 import StoreProvider from "@/store/StoreProvider";
-import NavbarWrapper from "@/components/navbar/NavbarWrapper";
+import Navbar from "@/components/layout/navbar/Navbar";
 
 export const metadata: Metadata = {
 	title: "Lumishade ",
@@ -13,10 +13,12 @@ export const metadata: Metadata = {
 const RootLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
 	return (
 		<html lang="en">
-			<body className=" bg-primaryWhite relative  flex flex-col font-manrope font-extralight text-primaryDarkText ">
+			<body className=" bg-primaryWhite relative flex flex-col font-extralight text-primaryDarkText font-openSans ">
 				<StoreProvider>
-					<NavbarWrapper />
-					<main className="flex-grow"> {children}</main>
+					<header>
+						<Navbar />
+					</header>
+					<main className="flex-grow pt-12"> {children}</main>
 					<footer>
 						<Footer />
 					</footer>
