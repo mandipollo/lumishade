@@ -17,11 +17,14 @@ const About = () => {
 	return (
 		<section
 			ref={container}
-			className=" flex justify-center items-center relative w-screen overflow-hidden bg-gray-500"
+			className=" flex justify-center items-center relative w-screen overflow-hidden"
 		>
-			<div className="flex md:gap-6 gap-2 flex-col justify-center items-center absolute md:h-80 h-60 md:w-96 w-60 bg-white top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2  ">
-				<p>Since</p>
-				<p className="md:text-8xl text-4xl">2000</p>
+			<div className="flex flex-col justify-center items-center rounded-sm gap-2 md:gap-6 absolute w-96 p-4 bg-white top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2  ">
+				<div className="flex flex-col gap-1 justify-center items-center">
+					<p>Since</p>
+					<p className="text-4xl md:text-6xl ">2000</p>
+				</div>
+
 				<p className="text-sm text-center">
 					we craft high-quality, natural products designed to nurture and
 					enhance your skin&apos;s natural beauty.
@@ -32,7 +35,7 @@ const About = () => {
 			</div>
 			<motion.div
 				style={{ y }}
-				className="flex w-screen min-h-screen flex-1 relative  "
+				className="flex w-screen h-screen flex-1 relative  "
 			>
 				<video
 					className=" w-full h-full object-cover"

@@ -19,9 +19,9 @@ const HomePage: FC = () => {
 		requestAnimationFrame(raf);
 	}, []);
 	return (
-		<div className="h-full w-full flex-col flex ">
+		<div className="flex flex-col h-full w-full  ">
 			<Hero />
-			<Promo />
+			{/* <Promo /> */}
 			<Products />
 			<About />
 		</div>

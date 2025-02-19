@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Nav from "./Nav";
 import Link from "next/link";
 import { useAppSelector } from "@/store/hooks";
+import AuthState from "./AuthState";
 
 const Navbar = () => {
 	// cart items
@@ -96,9 +97,6 @@ const Navbar = () => {
 					animate={isOpen ? "closed" : "open"}
 					className="flex items-center gap-2 justify-end w-1/4"
 				>
-					<Link href="/login">
-						<p className="font-extralight">LOGIN</p>
-					</Link>
 					<Link
 						href="/cart"
 						className="flex flex-row justify-center items-center"
@@ -113,6 +111,8 @@ const Navbar = () => {
 						/>
 						<p className="font-extralight">CART ({cartItems})</p>
 					</Link>
+
+					<AuthState />
 				</motion.nav>
 			</div>
 

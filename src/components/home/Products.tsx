@@ -3,8 +3,7 @@ import React from "react";
 
 const Products = () => {
 	return (
-		<section className="flex flex-col gap-4 w-full mt-12 px-4 text-2xl text-white">
-			{/* First Row - 2 columns */}
+		<section className="flex flex-col w-full gap-4 text-2xl px-4 text-white">
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 ">
 				<figure className="relative w-full h-full aspect-[3/2] ">
 					<Image
