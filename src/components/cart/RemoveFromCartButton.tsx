@@ -9,7 +9,6 @@ const RemoveFromCartButton: FC<{ productId: number }> = ({ productId }) => {
 	const dispatch = useAppDispatch();
 	const handleRemoveItem = (productId: number) => {
 		dispatch(removeFromCart(productId));
-		console.log(productId);
 	};
 
 	return (

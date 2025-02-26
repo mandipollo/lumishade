@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Overlay from "./Overlay";
-import Image from "next/image";
 
 const Nav: FC<{ handleOpen: () => void; isOpen: boolean }> = ({
 	handleOpen,

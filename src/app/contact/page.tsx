@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import useMousePosition from "../hooks/useMousePosition";
 
-export default function ContactPage() {
+const ContactPage = () => {
 	const [isHovered, setIsHovered] = useState<boolean>(false);
 	const { x, y } = useMousePosition();
 	const size = isHovered ? 200 : 40;
@@ -45,4 +45,6 @@ export default function ContactPage() {
 			</span>
 		</section>
 	);
-}
+};
+
+export default ContactPage;

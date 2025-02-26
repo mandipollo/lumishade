@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Dummy_Data } from "@/components/shop/Dummy-data";
 import Image from "next/image";
 import { Metadata } from "next";
-import CategoryProducts from "@/components/shop/CategoryProducts";
+import ShopCategory from "@/components/shop/ShopCategory";
 import AddToCartButton from "@/components/common/ui/AddToCartButton";
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ const ProductPage: FC<{ params: { id: string } }> = ({ params }) => {
 				</div>
 			</article>
 
-			<CategoryProducts category={product.category} />
+			<ShopCategory category={product.category} />
 		</section>
 	);
 };

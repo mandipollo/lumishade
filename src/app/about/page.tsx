@@ -1,13 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import { Metadata } from "next";
-import Link from "next/link";
 
-export const metadata: Metadata = {
-	title: "About",
-	description: "Decades of experience",
-};
-const About = () => {
+const AboutPage = () => {
 	return (
 		<section
 			aria-labelledby="about_us"
@@ -60,4 +54,4 @@ const About = () => {
 	);
 };
 
-export default About;
+export default AboutPage;

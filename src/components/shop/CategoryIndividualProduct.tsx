@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ProductProps } from "../cart/DataTypes";
+import { ProductProps } from "../../types/ProductType";
 const CategoryIndividualProduct: FC<{
 	product: ProductProps;
 }> = ({ product }) => {

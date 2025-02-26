@@ -3,8 +3,8 @@ import React from "react";
 
 const AccountNav = () => {
 	return (
-		<div className=" flex sticky top-16 left-4 p-4 h-full border border-gray-300 ">
-			<ul className="flex flex-col gap-4">
+		<nav className="flex h-screen p-4 w-60 border border-gray-300">
+			<ul className="flex flex-col h-full w-full gap-4">
 				<li>
 					<p>Personal</p>
 				</li>
@@ -15,7 +15,7 @@ const AccountNav = () => {
 					<p>Order History</p>
 				</li>
 			</ul>
-		</div>
+		</nav>
 	);
 };
 

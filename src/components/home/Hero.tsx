@@ -13,7 +13,7 @@ const Hero = () => {
 
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 	return (
-		<section className=" flex justify-start items-center relative h-full w-screen overflow-hidden">
+		<section className=" flex justify-start items-center relative h-full overflow-hidden">
 			<div className="flex flex-col gap-4 absolute z-10 left-10 md:left-20  top-10 md:top-20  ">
 				<h1 className="md:text-8xl text-4xl">Lumishade.</h1>
 				<p className="flex w-60 ">Love your skin!</p>
@@ -32,6 +32,7 @@ const Hero = () => {
 					typeof="video/mp4"
 					autoPlay
 					muted
+					loop={false}
 				></video>
 			</motion.div>
 		</section>

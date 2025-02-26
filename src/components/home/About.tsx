@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef } from "react";
-import Image from "next/image";
 
 import { useScroll, useTransform, motion } from "framer-motion";
 import Button from "../common/ui/Button";
@@ -17,7 +16,7 @@ const About = () => {
 	return (
 		<section
 			ref={container}
-			className=" flex justify-center items-center relative w-screen overflow-hidden"
+			className=" flex justify-center items-center relative w-full overflow-hidden"
 		>
 			<div className="flex flex-col justify-center items-center rounded-sm gap-2 md:gap-6 absolute w-96 p-4 bg-white top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2  ">
 				<div className="flex flex-col gap-1 justify-center items-center">

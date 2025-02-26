@@ -3,7 +3,7 @@
 import React from "react";
 import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
-import { ProductProps } from "@/components/cart/DataTypes";
+import { ProductProps } from "@/types/ProductType";
 import Button from "@/components/common/ui/Button";
 
 import RemoveFromCartButton from "@/components/cart/RemoveFromCartButton";
@@ -19,9 +19,9 @@ const CartPage = () => {
 
 	if (cartItems.length === 0) {
 		return (
-			<main className="h-screen flex justify-center items-center ">
+			<section className="h-screen flex justify-center items-center ">
 				<h1 className="text-2xl">Cricketsss..</h1>
-			</main>
+			</section>
 		);
 	}
 	return (

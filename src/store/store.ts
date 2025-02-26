@@ -1,61 +1,82 @@
 "use client";
-
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
-
-// slice
+import {
+	persistStore,
+	persistReducer,
+	FLUSH,
+	REHYDRATE,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER,
+} from "redux-persist";
+import createWebStorage from "redux-persist/es/storage/createWebStorage";
+// state
+import userReducer from "./features/user/userSlice";
 import filterReducer from "./features/shopfilter/shopFilterSlice";
 import cartReducer from "./features/cart/cartSlice";
-import createWebStorage from "redux-persist/es/storage/createWebStorage";
 
-const createNoopStorage = () => {
-	return {
-		getItem() {
-			return Promise.resolve(null);
-		},
-		setItem() {
-			return Promise.resolve();
-		},
-		removeItem() {
-			return Promise.resolve();
-		},
-	};
-};
+const createNoopStorage = () => ({
+	getItem() {
+		return Promise.resolve(null);
+	},
+	setItem() {
+		return Promise.resolve();
+	},
+	removeItem() {
+		return Promise.resolve();
+	},
+});
+
 const storage =
 	typeof window !== "undefined"
 		? createWebStorage("local")
-		: createNoopStorage(); // fallback for non-browser environments
+		: createNoopStorage();
+
 const persistConfig = {
-	key: "persist",
+	key: "root",
 	storage,
 };
 
 const rootReducer = combineReducers({
 	filter: filterReducer,
 	cart: cartReducer,
+	user: userReducer,
 });
+
+// Common middleware configuration
+const middlewareConfig = {
+	serializableCheck: {
+		ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+	},
+};
 
 const makeConfiguredStore = () =>
 	configureStore({
 		reducer: rootReducer,
+		middleware: getDefaultMiddleware => getDefaultMiddleware(middlewareConfig),
 	});
 
 export const makeStore = () => {
 	const isServer = typeof window === "undefined";
+
 	if (isServer) {
 		return makeConfiguredStore();
 	} else {
 		const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 		let store: any = configureStore({
 			reducer: persistedReducer,
+			middleware: getDefaultMiddleware =>
+				getDefaultMiddleware(middlewareConfig),
 		});
-		store.__persistor = persistStore(store);
+
+		(store as any).__persistor = persistStore(store);
 		return store;
 	}
 };
 
-// Infer the type of makeStore
+// Type definitions
 export type AppStore = ReturnType<typeof makeStore>;
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];

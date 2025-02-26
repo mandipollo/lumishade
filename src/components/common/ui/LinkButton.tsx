@@ -3,7 +3,6 @@ import Link from "next/link";
 
 const LinkButton: FC<{
 	text: string;
-
 	href: string;
 }> = ({ text, href }) => {
 	return (

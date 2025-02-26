@@ -1,5 +1,5 @@
 "use client";
-import { ProductProps } from "@/components/cart/DataTypes";
+import { ProductProps } from "@/types/ProductType";
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface CartState {

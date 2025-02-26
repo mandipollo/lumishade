@@ -1,12 +1,11 @@
 "use client";
 
-import React, { FC, useEffect } from "react";
 import "./globals.css";
+import React, { FC, useEffect } from "react";
 import Lenis from "lenis";
-import Hero from "@/components/home/Hero";
-import Promo from "@/components/home/Promo";
-import Products from "@/components/home/Products";
-import About from "@/components/home/About";
+import Hero from "../components/home/Hero";
+import Products from "../components/home/Products";
+import About from "../components/home/About";
 
 const HomePage: FC = () => {
 	useEffect(() => {
@@ -21,7 +20,6 @@ const HomePage: FC = () => {
 	return (
 		<div className="flex flex-col h-full w-full  ">
 			<Hero />
-			{/* <Promo /> */}
 			<Products />
 			<About />
 		</div>

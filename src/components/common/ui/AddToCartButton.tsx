@@ -1,6 +1,6 @@
 "use client";
 import React, { FC, useMemo } from "react";
-import { ProductProps } from "../../cart/DataTypes";
+import { ProductProps } from "@/types/ProductType";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addToCart } from "@/store/features/cart/cartSlice";
 
