@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Products = () => {
 	return (
-		<section className="flex flex-col w-full gap-4 text-2xl text-white">
+		<section className="flex flex-col w-full gap-4 p-2 text-2xl text-white">
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 ">
 				<figure className="relative w-full h-full aspect-[3/2] ">
 					<Image
@@ -14,7 +15,7 @@ const Products = () => {
 						src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1739713280/eco-refills_vlk7ul.webp"
 					/>
 					<h3 className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 ">
-						ECO-REFILLS
+						NEW-PRODUCTS
 					</h3>
 				</figure>
 				<figure className="relative w-full h-full aspect-[3/2]">
@@ -25,9 +26,12 @@ const Products = () => {
 						alt="Bestseller products"
 						src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1739713280/bestsellers_jarsjz.webp"
 					/>
-					<h3 className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 ">
+					<Link
+						href="/bestSeller"
+						className="absolute bottom-2 left-1/2 z-10 transform -translate-x-1/2 "
+					>
 						BEST-SELLERS
-					</h3>
+					</Link>
 				</figure>
 			</div>
 

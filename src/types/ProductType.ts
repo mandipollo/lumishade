@@ -3,5 +3,7 @@ export interface ProductProps {
 	title: string;
 	image: string;
 	price: number;
-	category: string;
+	size?: string;
+	category?: string;
+	description?: string;
 }

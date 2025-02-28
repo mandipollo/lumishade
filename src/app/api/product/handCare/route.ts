@@ -1,0 +1,34 @@
+import { connectToMongoDB } from "@/lib/db";
+import Product from "@/models/productModel";
+import getErrorMessage from "@/utils/getErrorMessage";
+import { NextResponse } from "next/server";
+
+export async function GET() {
+	await connectToMongoDB();
+	const productsPerPage = 20;
+
+	try {
+		const handCareProducts = await Product.find({
+			category: "handcare",
+		}).limit(productsPerPage);
+
+		const totalProducts = await Product.find({
+			category: "bodycare",
+		}).countDocuments();
+		if (!handCareProducts) {
+			return NextResponse.json({
+				success: false,
+				message: "Could not fetch products",
+			});
+		}
+
+		return NextResponse.json({
+			success: true,
+			handCareProducts,
+			totalProducts,
+		});
+	} catch (error: unknown) {
+		const message = getErrorMessage(error);
+		return NextResponse.json({ success: false, message });
+	}
+}

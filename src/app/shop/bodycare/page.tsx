@@ -1,25 +1,25 @@
 "use client";
-import { FC, useEffect, useState } from "react";
 import SectionContainer from "@/components/common/container/SectionContainer";
 import ProductCategory from "@/components/common/productNav/ProductCategory";
 import ProductFilter from "@/components/common/productNav/ProductFilter";
 import ProductSection from "@/components/common/products/ProductSection";
 import { ProductProps } from "@/types/ProductType";
-import axios from "axios";
 import getErrorMessage from "@/utils/getErrorMessage";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const ShopPage: FC = () => {
+const BodycarePage = () => {
 	const [error, setError] = useState<string>("");
 	const [products, setProducts] = useState<ProductProps[]>([]);
 	const [productCount, setProductCount] = useState<number>(0);
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get("/api/product");
+				const response = await axios.get("/api/product/bodyCare");
 
 				if (response.data.success) {
-					setProducts(response.data.products);
+					setProducts(response.data.bodyCareProducts);
 					setProductCount(response.data.totalProducts);
 				}
 			} catch (error) {
@@ -33,13 +33,11 @@ const ShopPage: FC = () => {
 	return (
 		<SectionContainer>
 			<div className="flex flex-col gap-2 h-40 justify-center items-center w-full border-b border-black">
-				<h1 className="text-xl md:text-2xl">All Products ({productCount})</h1>
+				<h1 className="text-xl md:text-2xl">Body Care ({productCount})</h1>
 				<p className="text-center text-sm">
-					From our extensive array of skincare, body care, and hair care,
-					we&apos;ve got everything you need to elevate your routine. Our
-					curated selection features natural and innovative formulas, ensuring
-					there&apos;s something for everyone, whether you&apos;re seeking a
-					radiant glow or indulgent treatments.
+					Pamper your body with our luxurious care essentials. From nourishing
+					lotions to rejuvenating scrubs, discover everything you need for
+					smooth, radiant skin.
 				</p>
 			</div>
 			<ProductCategory />
@@ -51,4 +49,4 @@ const ShopPage: FC = () => {
 	);
 };
 
-export default ShopPage;
+export default BodycarePage;
