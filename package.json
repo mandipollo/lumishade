@@ -1,38 +1,36 @@
 {
-  "name": "seniora",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@clerk/types": "^4.46.1",
-    "@reduxjs/toolkit": "^2.2.7",
-    "axios": "^1.7.9",
-    "bcryptjs": "^3.0.2",
-    "framer-motion": "^11.3.31",
-    "jsonwebtoken": "^9.0.2",
-    "lenis": "^1.1.13",
-    "mongoose": "^8.10.1",
-    "next": "14.2.7",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-redux": "^9.1.2",
-    "react-toastify": "^11.0.5",
-    "redux-persist": "^6.0.0"
-  },
-  "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.9",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.7",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+	"name": "lumishade",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@reduxjs/toolkit": "^2.2.7",
+		"axios": "^1.7.9",
+		"bcryptjs": "^3.0.2",
+		"framer-motion": "^11.3.31",
+		"jose": "^6.0.10",
+		"lenis": "^1.1.13",
+		"mongoose": "^8.10.1",
+		"next": "14.2.7",
+		"react": "^18",
+		"react-dom": "^18",
+		"react-redux": "^9.1.2",
+		"react-toastify": "^11.0.5",
+		"redux-persist": "^6.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"eslint": "^8",
+		"eslint-config-next": "14.2.7",
+		"postcss": "^8",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	}
 }

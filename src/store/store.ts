@@ -13,7 +13,6 @@ import {
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 // state
 import userReducer from "./features/user/userSlice";
-import filterReducer from "./features/shopfilter/shopFilterSlice";
 import cartReducer from "./features/cart/cartSlice";
 
 const createNoopStorage = () => ({
@@ -39,7 +38,6 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-	filter: filterReducer,
 	cart: cartReducer,
 	user: userReducer,
 });

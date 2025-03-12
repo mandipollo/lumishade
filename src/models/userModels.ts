@@ -1,5 +1,5 @@
 // Importing mongoose library along with Document and Model types from it
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model, Types } from "mongoose";
 
 // Defining the structure of a todo item using TypeScript interfaces
 export interface IUser {
@@ -7,11 +7,26 @@ export interface IUser {
 	lastName: string;
 	email: string;
 	password: string;
+	address: {
+		street: { type: String; required: false };
+		town: { type: String; required: false };
+		postcode: { type: String; required: false };
+	};
+	cartData: {
+		items: [
+			{
+				productId: {
+					type: mongoose.Schema.Types.ObjectId;
+					ref: "product";
+				};
+			}
+		];
+	};
 }
 
 // Merging ITodo interface with mongoose's Document interface to create
 // a new interface that represents a todo document in MongoDB
-export interface IUserDocument extends IUser, Document {
+export interface IUserDocument extends IUser, Document<Types.ObjectId> {
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -35,6 +50,22 @@ const userSchema = new mongoose.Schema<IUserDocument>(
 		password: {
 			type: String,
 			required: true,
+		},
+		address: {
+			street: { type: String, required: false },
+			town: { type: String, required: false },
+			postcode: { type: String, required: false },
+		},
+		cartData: {
+			items: [
+				{
+					productId: {
+						type: mongoose.Schema.Types.ObjectId,
+						ref: "Product",
+					},
+					_id: false,
+				},
+			],
 		},
 	},
 	{

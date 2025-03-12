@@ -35,7 +35,10 @@ const Navbar = () => {
 	};
 
 	return (
-		<header className=" fixed top-0 left-0 right-0 z-40 flex flex-col text-sm  flex-1 w-full items-center border border-b border-gray-400 border-opacity-25">
+		<div
+			role="menu"
+			className=" fixed top-0 left-0 right-0 z-40 flex flex-col text-sm  flex-1 w-full items-center border border-b border-gray-400 border-opacity-25"
+		>
 			<div className="bg-primaryWhite  flex justify-between p-2 w-full h-12  text-primaryDarkText">
 				<nav className="flex w-1/4 flex-row gap-2 items-center">
 					<Link href="/" className="flex justify-center items-center">
@@ -100,14 +103,6 @@ const Navbar = () => {
 						href="/cart"
 						className="flex flex-row justify-center items-center"
 					>
-						<Image
-							loading="lazy"
-							src="/svg/cart.svg"
-							width={4}
-							height={4}
-							alt="logo"
-							className="h-4 w-4 "
-						/>
 						<p className="font-extralight">CART ({cartItems})</p>
 					</Link>
 
@@ -118,7 +113,7 @@ const Navbar = () => {
 			<AnimatePresence mode="wait">
 				{isOpen && <Nav handleOpen={handleOpen} isOpen={isOpen} />}
 			</AnimatePresence>
-		</header>
+		</div>
 	);
 };
 

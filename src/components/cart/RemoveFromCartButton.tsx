@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useAppDispatch } from "@/store/hooks";
 import { removeFromCart } from "@/store/features/cart/cartSlice";
 
-const RemoveFromCartButton: FC<{ productId: number }> = ({ productId }) => {
+const RemoveFromCartButton: FC<{ productId: string }> = ({ productId }) => {
 	// remove item from basket
 	const dispatch = useAppDispatch();
-	const handleRemoveItem = (productId: number) => {
+	const handleRemoveItem = (productId: string) => {
 		dispatch(removeFromCart(productId));
 	};
 

@@ -8,11 +8,11 @@ const CategoryIndividualProduct: FC<{
 	return (
 		<li role="listitem" className="flex flex-col gap-4 h-96 text-sm">
 			<Link
-				href={`/shop/${product.id}`}
+				href={`/shop/${product._id}`}
 				className="flex justify-center items-center h-full w-full"
 			>
 				<div
-					key={product.id}
+					key={product._id}
 					className=" grid h-full w-full relative bg-primary"
 				>
 					<Image

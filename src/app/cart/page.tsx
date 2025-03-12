@@ -32,7 +32,7 @@ const CartPage = () => {
 					{cartItems.map((product: ProductProps) => (
 						<li
 							role="listitem"
-							key={product.id}
+							key={product._id}
 							className="flex flex-row bg-primary p-2 gap-2 rounded-md"
 						>
 							<div className="relative h-40 w-40">
@@ -51,7 +51,7 @@ const CartPage = () => {
 									<p className="text-2xl">{product.title}</p>
 									<p>£{product.price}</p>
 								</div>
-								<RemoveFromCartButton productId={product.id} />
+								<RemoveFromCartButton productId={product._id} />
 							</div>
 						</li>
 					))}

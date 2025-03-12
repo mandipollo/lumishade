@@ -5,10 +5,10 @@ import InfoFooter from "./InfoFooter";
 
 const Footer = () => {
 	return (
-		<div className="flex flex-col relative ">
+		<section className="flex flex-col relative ">
 			<ContactFooter />
 			<InfoFooter />
-		</div>
+		</section>
 	);
 };
 

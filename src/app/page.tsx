@@ -18,11 +18,11 @@ const HomePage: FC = () => {
 		requestAnimationFrame(raf);
 	}, []);
 	return (
-		<div className="flex flex-col h-full w-full  ">
+		<section className="flex flex-col h-full w-full ">
 			<Hero />
 			<Products />
 			<About />
-		</div>
+		</section>
 	);
 };
 

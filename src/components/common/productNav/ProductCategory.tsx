@@ -17,8 +17,8 @@ const ProductCategory = () => {
 				/>
 				<ProductNavLink
 					productCat="Best Sellers"
-					isActive={pathname === "/shop/bestSeller" && true}
-					link="/shop/bestSeller"
+					isActive={pathname === "/shop/bestseller" && true}
+					link="/shop/bestseller"
 				/>
 				<ProductNavLink
 					productCat="New Products"

@@ -1,13 +1,11 @@
-import jwt from "jsonwebtoken";
+import { SignJWT } from "jose";
 
-const generateToken = (id: string) => {
-	const secret = process.env.JWT_SECRET;
-	if (!secret) {
-		throw new Error("JWT_SECRET is not defined");
-	}
-	return jwt.sign({ id }, secret, {
-		expiresIn: "24hr",
-	});
+const generateToken = async (user: any) => {
+	const key = new TextEncoder().encode(process.env.JWT_SECRET);
+	const token = await new SignJWT({ _id: user._id })
+		.setProtectedHeader({ alg: "HS256" })
+		.sign(key);
+
+	return token;
 };
-
 export default generateToken;

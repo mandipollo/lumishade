@@ -1,59 +1,70 @@
-import React, { FC } from "react";
-import { Dummy_Data } from "@/components/shop/Dummy-data";
+"use client";
+import React, { FC, useEffect, useState } from "react";
+import SectionContainer from "@/components/common/container/SectionContainer";
+import { ProductProps } from "@/types/ProductType";
+import axios from "axios";
+import getErrorMessage from "@/utils/getErrorMessage";
 import Image from "next/image";
-import { Metadata } from "next";
-import ShopCategory from "@/components/shop/ShopCategory";
 import AddToCartButton from "@/components/common/ui/AddToCartButton";
 
-export const metadata: Metadata = {
-	title: "Product",
-	description: "Show selected products",
-};
 const ProductPage: FC<{ params: { id: string } }> = ({ params }) => {
-	const parsedId = parseInt(params.id, 10);
-	const product = Dummy_Data.find(product => product.id === parsedId);
+	const productId = params.id;
+	const [error, setError] = useState<string>("");
+	const [product, setProduct] = useState<ProductProps>();
+
+	useEffect(() => {
+		const fetchProduct = async () => {
+			try {
+				if (!productId) return;
+				const response = await axios.post("/api/product/get-product", {
+					productId,
+				});
+
+				if (response.data.success) {
+					setProduct(response.data.product);
+				}
+			} catch (error: unknown) {
+				let message = getErrorMessage(error);
+				setError(message);
+			}
+		};
+
+		fetchProduct();
+	}, [productId]);
 
 	if (!product) {
-		return null;
+		return <p>Loading....</p>;
 	}
 	return (
-		<section className="flex flex-col py-4 px-2 gap-4 justify-center items-center">
-			<article className="grid grid-cols-1 md:grid-cols-2 py-10 md:py-20 w-full h-full min-h-screen max-w-7xl">
-				<div className="flex relative h-full w-full">
+		<SectionContainer>
+			<div className="grid grid-cols-2 gap-2">
+				<div role="img" className="relative aspect-square">
 					<Image
-						loading="lazy"
-						src={product.image}
-						alt={product.title}
+						sizes="(max-width: 768px) 100vw, 50vw"
 						fill
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-						className="object-contain h-full w-full"
-					/>
+						src={product?.image || "/path/to/default/image.jpg"}
+						alt={`Image showcasing product - ${product?.title}`}
+					></Image>
 				</div>
-
-				<div
-					role="contentinfo"
-					key={product.id}
-					className="flex justify-center flex-col space-y-4 relative"
-				>
-					<h4 className="text-2xl">
-						{product.category.toUpperCase()} - {product.title}
-					</h4>
-					<p>
-						Please note that this is not a real project but a demo designed
-						solely to showcase our skills and expertise in web development,
-						design, and UX copywriting. The product is intended for
-						demonstration purposes only and should not be construed as a fully
-						functional or operational e-commerce website. Thank you for your
-						understanding.
-					</p>
-					<p className="text-xl">£{product.price}</p>
-
-					<AddToCartButton product={product} />
+				<div className="p-4 flex justify-center items-center">
+					<div className="flex flex-col gap-4">
+						<p className="font-semibold">{product?.category}</p>
+						<h1 className="text-xl md:text-2xl font-medium">
+							{product?.title}
+						</h1>
+						<p className="font-medium">£{product?.price}</p>
+						<p>{product?.description}</p>
+						<p className="font-medium">
+							SIZE{" "}
+							<span className="bg-black text-white rounded-full p-2">
+								{product?.size}
+							</span>
+						</p>
+						<AddToCartButton product={product} />
+					</div>
 				</div>
-			</article>
-
-			<ShopCategory category={product.category} />
-		</section>
+			</div>
+		</SectionContainer>
 	);
 };
 

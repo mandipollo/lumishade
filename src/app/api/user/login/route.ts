@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
 		// generate jwt and send it to the client
 
-		const token = generateToken(user.id);
+		const token = await generateToken(user);
 
 		return NextResponse.json({
 			success: true,

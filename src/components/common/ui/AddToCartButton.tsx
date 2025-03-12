@@ -9,8 +9,8 @@ const AddToCartButton: FC<{ product: ProductProps }> = ({ product }) => {
 	const dispatch = useAppDispatch();
 
 	const isInCart = useMemo(
-		() => cart.some(cartItem => cartItem.id === product.id),
-		[cart, product.id]
+		() => cart.some(cartItem => cartItem._id === product._id),
+		[cart, product._id]
 	);
 
 	const addToCartHandler = () => {
@@ -24,13 +24,11 @@ const AddToCartButton: FC<{ product: ProductProps }> = ({ product }) => {
 			aria-label={isInCart ? "Item added to cart" : "Add item to cart"}
 			aria-disabled={isInCart}
 			disabled={isInCart}
-			className={`border px-2 rounded-xl transition ${
-				isInCart
-					? "bg-[#4D3D30] text-white cursor-not-allowed"
-					: "border-borderColorDark hover:bg-gray-200"
+			className={`p-4 transition bg-black text-white ${
+				isInCart ? " cursor-not-allowed" : " "
 			}`}
 		>
-			{isInCart ? "ADDED TO CART" : "ADD TO CART"}
+			{isInCart ? "ADDED TO BAG" : "ADD TO BAG"}
 		</button>
 	);
 };
