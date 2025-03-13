@@ -5,7 +5,7 @@ import { ProductProps } from "@/types/ProductType";
 import axios from "axios";
 import getErrorMessage from "@/utils/getErrorMessage";
 import Image from "next/image";
-import AddToCartButton from "@/components/common/ui/AddToCartButton";
+import AddToCartButton from "@/components/common/products/AddToCartButton";
 
 const ProductPage: FC<{ params: { id: string } }> = ({ params }) => {
 	const productId = params.id;
@@ -60,7 +60,11 @@ const ProductPage: FC<{ params: { id: string } }> = ({ params }) => {
 								{product?.size}
 							</span>
 						</p>
-						<AddToCartButton product={product} />
+						<AddToCartButton
+							textColor="text-white"
+							bgColor="bg-black"
+							product={product}
+						/>
 					</div>
 				</div>
 			</div>

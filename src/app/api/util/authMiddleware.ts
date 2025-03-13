@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function authMiddleware(req: NextRequest) {
 	try {
 		// secret_key
-		const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+		const key = new TextEncoder().encode(process.env.JWT_SECRET);
 
 		// Get the authorization header using the Fetch API's Headers interface
 		const authHeader = req.headers.get("Authorization");
@@ -32,7 +32,7 @@ export async function authMiddleware(req: NextRequest) {
 			);
 		}
 		// Decode and verify the token using your secret key
-		const { payload } = await jwtVerify(token, secret);
+		const { payload } = await jwtVerify(token, key);
 
 		const _id = payload._id;
 

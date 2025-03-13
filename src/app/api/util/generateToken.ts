@@ -2,7 +2,7 @@ import { SignJWT } from "jose";
 
 const generateToken = async (user: any) => {
 	const key = new TextEncoder().encode(process.env.JWT_SECRET);
-	const token = await new SignJWT({ _id: user._id })
+	const token = await new SignJWT({ _id: user._id.toString() })
 		.setProtectedHeader({ alg: "HS256" })
 		.sign(key);
 

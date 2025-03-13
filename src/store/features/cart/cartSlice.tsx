@@ -1,6 +1,7 @@
 "use client";
 import { ProductProps } from "@/types/ProductType";
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 export interface CartState {
 	cart: ProductProps[];
@@ -21,6 +22,7 @@ export const cartSlice = createSlice({
 			// doesn't actually mutate the state because it uses the Immer library,
 			// which detects changes to a "draft state" and produces a brand new
 			// immutable state based off those changes
+
 			state.cart.push(action.payload);
 			state.items += 1;
 		},

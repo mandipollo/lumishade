@@ -2,16 +2,13 @@ import { ProductProps } from "@/types/ProductType";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import AddToCartButton from "./AddToCartButton";
 
 interface ProductCardProps {
-	handleAddToCart: (product: ProductProps) => void;
 	product: ProductProps;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
-	product,
-	handleAddToCart,
-}) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 	return (
 		<li className="flex flex-col justify-center items-center">
 			<Link
@@ -35,12 +32,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
 					<p className="font-medium">{product.price}£</p>
 				</div>
 			</div>
-			<button
-				onClick={() => handleAddToCart(product)}
-				className="border border-black px-4 py-2 mt-10 text-sm"
-			>
-				Add To Bag
-			</button>
+			<AddToCartButton
+				textColor="text-black"
+				bgColor="bg-white"
+				product={product}
+			/>
 		</li>
 	);
 };
