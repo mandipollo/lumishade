@@ -16,7 +16,7 @@ const RemoveFromCartButton: FC<{ productId: string }> = ({ productId }) => {
 			onClick={() => handleRemoveItem(productId)}
 			className="flex text-md"
 		>
-			<Image src="/svg/cross.svg" alt="remove" width={20} height={20} />
+			<Image src="/svg/close.svg" alt="remove" width={20} height={20} />
 		</button>
 	);
 };

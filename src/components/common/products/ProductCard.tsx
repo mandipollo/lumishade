@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 		<li className="flex flex-col justify-center items-center">
 			<Link
 				href={`/shop/${product._id}`}
-				className="relative aspect-square w-full h-auto"
+				className="relative aspect-square w-full h-auto hover:scale-105 duration-150 ease-out transition-all"
 			>
 				<Image
 					sizes="(max-width: 768px) 100vw, 50vw"

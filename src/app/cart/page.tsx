@@ -5,10 +5,9 @@ import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { ProductProps } from "@/types/ProductType";
 import Button from "@/components/common/ui/Button";
-
-import RemoveFromCartButton from "@/components/cart/RemoveFromCartButton";
-
 import Link from "next/link";
+import CartProducts from "@/components/cart/CartProducts";
+import ToCheckout from "@/components/cart/ToCheckout";
 const CartPage = () => {
 	const cartItems = useAppSelector(state => state.cart.cart) as ProductProps[];
 
@@ -25,44 +24,11 @@ const CartPage = () => {
 		);
 	}
 	return (
-		<section className="flex h-screen flex-col w-full gap-4 justify-center items-center p-4">
-			<h2 className="text-4xl">ORDER SUMMARY</h2>
-			<section className="flex flex-col h-full w-full">
-				<ul role="list" className="grid md:grid-cols-2 grid-cols-1 gap-4">
-					{cartItems.map((product: ProductProps) => (
-						<li
-							role="listitem"
-							key={product._id}
-							className="flex flex-row bg-primary p-2 gap-2 rounded-md"
-						>
-							<div className="relative h-40 w-40">
-								<Image
-									loading="lazy"
-									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-									fill
-									className="object-cover"
-									src={product.image}
-									alt={product.title}
-								/>
-							</div>
-
-							<div className="flex flex-row justify-between w-full">
-								<div className="flex flex-col justify-between">
-									<p className="text-2xl">{product.title}</p>
-									<p>£{product.price}</p>
-								</div>
-								<RemoveFromCartButton productId={product._id} />
-							</div>
-						</li>
-					))}
-				</ul>
-			</section>
-			<section className="flex w-full  justify-between">
-				<p>TOTAL PRICE - £{totalPrice.toFixed(2)}</p>
-				<Link href="/contact" className="w-60 h-10">
-					<Button text="PROCEED TO CHECKOUT" />
-				</Link>
-			</section>
+		<section className="flex h-full min-h-[calc(100vh-3rem)] justify-center w-full bg-white">
+			<div className="flex flex-row gap-2 justify-center w-full max-w-5xl pt-24">
+				<CartProducts cartItems={cartItems} />
+				<ToCheckout totalPrice={totalPrice} />
+			</div>
 		</section>
 	);
 };
