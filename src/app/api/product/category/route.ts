@@ -1,21 +1,21 @@
 import { connectToMongoDB } from "@/lib/db";
 import Product from "@/models/productModel";
 import getErrorMessage from "@/utils/getErrorMessage";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function POST(req: NextRequest) {
 	await connectToMongoDB();
 	const productsPerPage = 20;
-
+	const { category } = await req.json();
 	try {
-		const handCareProducts = await Product.find({
-			category: "handcare",
+		const categoryProducts = await Product.find({
+			category: category,
 		}).limit(productsPerPage);
 
 		const totalProducts = await Product.find({
-			category: "bodycare",
+			category: category,
 		}).countDocuments();
-		if (!handCareProducts) {
+		if (!categoryProducts) {
 			return NextResponse.json({
 				success: false,
 				message: "Could not fetch products",
@@ -24,7 +24,7 @@ export async function GET() {
 
 		return NextResponse.json({
 			success: true,
-			handCareProducts,
+			categoryProducts,
 			totalProducts,
 		});
 	} catch (error: unknown) {

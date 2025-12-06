@@ -4,11 +4,7 @@ import Link from "next/link";
 import React from "react";
 import AddToCartButton from "./AddToCartButton";
 
-interface ProductCardProps {
-	product: ProductProps;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard = ({ product }: { product: ProductProps }) => {
 	return (
 		<li className="flex flex-col justify-center items-center">
 			<Link

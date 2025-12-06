@@ -1,36 +1,13 @@
-"use client";
-import React, { FC, useEffect, useState } from "react";
 import SectionContainer from "@/components/common/container/SectionContainer";
-import { ProductProps } from "@/types/ProductType";
-import axios from "axios";
-import getErrorMessage from "@/utils/getErrorMessage";
 import Image from "next/image";
 import AddToCartButton from "@/components/common/products/AddToCartButton";
+import productService from "@/service/productService";
 
-const ProductPage: FC<{ params: { id: string } }> = ({ params }) => {
+const ProductPage = async ({ params }: { params: { id: string } }) => {
 	const productId = params.id;
-	const [error, setError] = useState<string>("");
-	const [product, setProduct] = useState<ProductProps>();
 
-	useEffect(() => {
-		const fetchProduct = async () => {
-			try {
-				if (!productId) return;
-				const response = await axios.post("/api/product/get-product", {
-					productId,
-				});
-
-				if (response.data.success) {
-					setProduct(response.data.product);
-				}
-			} catch (error: unknown) {
-				let message = getErrorMessage(error);
-				setError(message);
-			}
-		};
-
-		fetchProduct();
-	}, [productId]);
+	const { product, error } = await productService.getProduct(productId);
+	console.log(product);
 
 	if (!product) {
 		return <p>Loading....</p>;

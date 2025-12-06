@@ -46,15 +46,17 @@ export async function POST(req: NextRequest) {
 		const productInCart = user.cartData.products.find(
 			product => product.productId.toString() === productId
 		);
-		// increment count if found
-		if (productInCart) {
-			productInCart.count++;
+		// decrease count if items count more then 2 else remove
+		if (productInCart && productInCart.count > 1) {
+			productInCart.count--;
 		} else {
-			user.cartData.products.push({ productId, count: 1 });
+			user.cartData.products = user.cartData.products.filter(
+				product => product.productId.toString() !== productId
+			);
 		}
 
 		// increment itemCounts
-		user.cartData.itemCounts++;
+		user.cartData.itemCounts--;
 		await user.save();
 		return NextResponse.json(
 			{ success: true, message: `Cart updated!` },

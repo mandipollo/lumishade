@@ -2,20 +2,13 @@
 
 import React from "react";
 import { useAppSelector } from "@/store/hooks";
-import Image from "next/image";
-import { ProductProps } from "@/types/ProductType";
-import Button from "@/components/common/ui/Button";
-import Link from "next/link";
 import CartProducts from "@/components/cart/CartProducts";
 import ToCheckout from "@/components/cart/ToCheckout";
+import { CartProductProps } from "@/store/features/cart/cartSlice";
 const CartPage = () => {
-	const cartItems = useAppSelector(state => state.cart.cart) as ProductProps[];
+	// get the cart data from the server and populate it
 
-	const totalPrice = cartItems.reduce(
-		(accumulator, product) => accumulator + product.price,
-		0
-	);
-
+	const cartItems = [];
 	if (cartItems.length === 0) {
 		return (
 			<section className="h-screen flex justify-center items-center ">

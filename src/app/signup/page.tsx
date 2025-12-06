@@ -5,15 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import {
-	ExtendedSingupErrors,
-	UserSingupState,
-} from "@/types/UserSingup-types";
+	ExtendedSignupErrors,
+	UserSignupState,
+} from "@/types/UserSignup-types";
 import ErrorMessage from "@/components/common/ui/ErrorMessage";
 import getErrorMessage from "../../utils/getErrorMessage";
 import { toast } from "react-toastify";
 const SignupPage = () => {
 	const router = useRouter();
-	const [errors, setErrors] = useState<ExtendedSingupErrors>({
+	const [errors, setErrors] = useState<ExtendedSignupErrors>({
 		firstName: "",
 		lastName: "",
 		email: "",
@@ -21,7 +21,7 @@ const SignupPage = () => {
 		confirmPassword: "",
 		general: "",
 	});
-	const [formData, setFormData] = useState<UserSingupState>({
+	const [formData, setFormData] = useState<UserSignupState>({
 		firstName: "",
 		lastName: "",
 		email: "",
@@ -31,18 +31,20 @@ const SignupPage = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
 	// form field
-
 	const handleForm = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { id, value } = e.target;
 
 		setFormData(prev => ({ ...prev, [id]: value }));
 	};
+
 	// post data to route handler
 	const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		// prevent accidental form submission
 		setIsSubmitting(true);
 		try {
+			console.log("start sign up");
+
 			// validate data
 			const { isValid, errors } = validateUserSignup(
 				formData.firstName,
@@ -51,6 +53,8 @@ const SignupPage = () => {
 				formData.password,
 				formData.confirmPassword
 			);
+
+			console.log(isValid, errors);
 
 			if (!isValid) {
 				return setErrors(errors);
@@ -62,6 +66,8 @@ const SignupPage = () => {
 				email: formData.email,
 				password: formData.password,
 			});
+			console.log(response);
+
 			if (response.data.success) {
 				toast.success(response.data.message);
 				router.push("/login");

@@ -1,6 +1,6 @@
 "use client";
 
-import { SingupErrors } from "@/types/UserSingup-types";
+import { SignupErrors } from "@/types/UserSignup-types";
 const validateUserSignup = (
 	firstName: string,
 	lastName: string,
@@ -8,7 +8,7 @@ const validateUserSignup = (
 	password: string,
 	confirmPassword: string
 ) => {
-	const errors: SingupErrors["errors"] = {
+	const errors: SignupErrors["errors"] = {
 		firstName: "",
 		lastName: "",
 		email: "",
@@ -28,11 +28,11 @@ const validateUserSignup = (
 	if (password.trim().length < 6) {
 		errors.password = "Password should be atleast 6 characters long.";
 	}
-	if (confirmPassword.trim().length < 6 || confirmPassword !== password) {
+	if (confirmPassword !== password) {
 		errors.confirmPassword = "Passwords do not match!";
 	}
 	return {
-		isValid: Object.keys("errors").length === 0,
+		isValid: Object.values(errors).every(error => error === ""),
 		errors,
 	};
 };

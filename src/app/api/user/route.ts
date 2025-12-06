@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { connectToMongoDB } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import getErrorMessage from "@/utils/getErrorMessage";
 
 export async function POST(req: NextRequest) {
 	await connectToMongoDB();
@@ -40,10 +41,10 @@ export async function POST(req: NextRequest) {
 			},
 		});
 	} catch (error) {
-		console.log(error);
+		const message = getErrorMessage(error);
 		return NextResponse.json({
 			success: false,
-			message: "error creating user",
+			message,
 		});
 	}
 }

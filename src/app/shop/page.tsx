@@ -1,35 +1,11 @@
-"use client";
-import { FC, useEffect, useState } from "react";
 import SectionContainer from "@/components/common/container/SectionContainer";
-import ProductCategory from "@/components/common/productNav/ProductCategory";
-import ProductFilter from "@/components/common/productNav/ProductFilter";
+import ProductCategory from "@/components/shop/ProductCategory";
+import ProductFilter from "@/components/shop/ProductFilter";
 import ProductSection from "@/components/common/products/ProductSection";
-import { ProductProps } from "@/types/ProductType";
-import axios from "axios";
-import getErrorMessage from "@/utils/getErrorMessage";
-import { toast } from "react-toastify";
+import productService from "@/service/productService";
 
-const ShopPage: FC = () => {
-	const [error, setError] = useState<string>("");
-	const [products, setProducts] = useState<ProductProps[]>([]);
-	const [productCount, setProductCount] = useState<number | null>(null);
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await axios.get("/api/product");
-
-				if (response.data.success) {
-					setProducts(response.data.products);
-					setProductCount(response.data.totalProducts);
-				}
-			} catch (error) {
-				let message = getErrorMessage(error);
-				toast.error(message);
-				setError(message);
-			}
-		};
-		fetchData();
-	}, []);
+const ShopPage = async () => {
+	const { productCount, products } = await productService.getProductsData();
 	return (
 		<SectionContainer>
 			<div className="flex flex-col gap-2 h-40 justify-center items-center w-full border-b border-black">

@@ -4,6 +4,8 @@ import User from "@/models/userModels";
 import bcrypt from "bcryptjs";
 import generateToken from "../../util/generateToken";
 import getErrorMessage from "@/utils/getErrorMessage";
+import Product from "@/models/productModel";
+import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
 	await connectToMongoDB();
@@ -33,10 +35,23 @@ export async function POST(req: NextRequest) {
 		if (!isPasswordMatch) {
 			return NextResponse.json({ success: false, message: "Wrong password!" });
 		}
-
-		// generate jwt and send it to the client
+		// generate jwt and set it in cookies
 
 		const token = await generateToken(user);
+		const cookieStore = cookies();
+		cookieStore.set("token", token);
+
+		// get user cart details
+
+		const productDetails = await Promise.all(
+			user.cartData.products.map(async product => {
+				const productData = await Product.findById(product.productId);
+
+				return { count: product.count, ...productData?.toObject() };
+			})
+		);
+
+		// add the count
 
 		return NextResponse.json({
 			success: true,
@@ -45,6 +60,10 @@ export async function POST(req: NextRequest) {
 				firstName: user.firstName,
 				lastName: user.lastName,
 				email: user.email,
+			},
+			cart: {
+				cart: productDetails,
+				itemCounts: user.cartData.itemCounts,
 			},
 		});
 	} catch (error: unknown) {

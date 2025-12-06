@@ -1,12 +1,17 @@
 import React from "react";
-import { ProductProps } from "@/types/ProductType";
 import Image from "next/image";
 import RemoveFromCartButton from "./RemoveFromCartButton";
+import { CartProductProps } from "@/store/features/cart/cartSlice";
+import UseReduceProductFromCart from "@/hooks/UseReduceProductFromCart";
+import userService from "@/service/userService";
 
 interface CartProductsProps {
-	cartItems: ProductProps[];
+	cartItems: CartProductProps[];
 }
-const CartProducts: React.FC<CartProductsProps> = ({ cartItems }) => {
+const CartProducts: React.FC<CartProductsProps> = async ({ cartItems }) => {
+	const handleRemoveItemFromCart = async (productId: string) => {
+		const {} = await userService.removeFromUserCart({ productId });
+	};
 	if (!cartItems) {
 		return <p>Fetching data</p>;
 	}
@@ -14,7 +19,7 @@ const CartProducts: React.FC<CartProductsProps> = ({ cartItems }) => {
 		<section className="flex flex-col h-full w-full">
 			<h1 className="text-2xl underline underline-offset-2 ">ORDER SUMMARY</h1>
 			<ul role="list" className="flex flex-col gap-4">
-				{cartItems.map((product: ProductProps) => (
+				{cartItems.map((product: CartProductProps) => (
 					<li
 						role="listitem"
 						key={product._id}
@@ -40,6 +45,7 @@ const CartProducts: React.FC<CartProductsProps> = ({ cartItems }) => {
 								<RemoveFromCartButton productId={product._id} />
 								<div className="flex gap-2 text-center items-center">
 									<button
+										onClick={() => handleRemoveItemFromCart(product._id)}
 										aria-label={`Reduce the quantity of ${product.title} `}
 										className="border p-2"
 									>
@@ -50,7 +56,7 @@ const CartProducts: React.FC<CartProductsProps> = ({ cartItems }) => {
 											src="/svg/minus.svg"
 										></Image>
 									</button>
-									<p className="">1</p>
+									<p className="">{product.count}</p>
 									<button
 										aria-label={`Increase the quantity of ${product.title} `}
 										className="border p-2"
@@ -63,7 +69,7 @@ const CartProducts: React.FC<CartProductsProps> = ({ cartItems }) => {
 										></Image>
 									</button>
 								</div>
-								<p className="font-medium">£{product.price}</p>
+								<p className="font-medium">£{product.price * product.count}</p>
 							</div>
 						</div>
 					</li>

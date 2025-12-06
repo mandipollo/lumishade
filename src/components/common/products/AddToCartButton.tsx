@@ -1,7 +1,7 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { ProductProps } from "@/types/ProductType";
-import UseCart from "@/hooks/UseCart";
+import userService from "@/service/userService";
 
 interface AddToCartButtonProps {
 	product: ProductProps;
@@ -13,12 +13,22 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({
 	bgColor,
 	textColor,
 }) => {
-	const { handleAddToCart, isSubmitting, error } = UseCart();
+	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+	const handleAddToCart = async (productId: string) => {
+		setIsSubmitting(true);
+
+		const token = localStorage.getItem("token");
+		if (!token) return;
+		try {
+			const {} = await userService.addToUserCart({ productId, token });
+		} catch (error) {}
+	};
 
 	return (
 		<button
 			disabled={isSubmitting}
-			onClick={() => handleAddToCart(product)}
+			onClick={() => handleAddToCart(product._id)}
 			className={`border border-black px-4 py-2 mt-10 text-sm ${bgColor} ${textColor} `}
 		>
 			Add To Bag

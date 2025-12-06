@@ -1,16 +1,16 @@
 "use client";
-
 import React from "react";
 import ProductNavLink from "./ProductNavLink";
 import { usePathname } from "next/navigation";
-import ProductNavButton from "./ProductNavLink";
+
 const ProductCategory = () => {
+	// could prolly use params to handle the active links and make it a server component
 	// set the active nav
 	const pathname = usePathname();
 	return (
 		<nav className="flex w-full text-xs h-20">
 			<ul className="flex flex-row gap-2 items-center justify-center w-full">
-				<ProductNavButton
+				<ProductNavLink
 					productCat="All"
 					isActive={pathname === "/shop" && true}
 					link="/shop"

@@ -1,9 +1,9 @@
 import { connectToMongoDB } from "@/lib/db";
 import Product from "@/models/productModel";
 import getErrorMessage from "@/utils/getErrorMessage";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
 	await connectToMongoDB();
 	const productsPerPage = 20;
 
@@ -12,7 +12,7 @@ export async function GET() {
 			bestSeller: true,
 		}).limit(productsPerPage);
 
-		const totalProducts = await Product.find({
+		const productCount = await Product.find({
 			bestSeller: true,
 		}).countDocuments();
 		if (!bestSellerProducts) {
@@ -25,7 +25,7 @@ export async function GET() {
 		return NextResponse.json({
 			success: true,
 			bestSellerProducts,
-			totalProducts,
+			productCount,
 		});
 	} catch (error: unknown) {
 		const message = getErrorMessage(error);

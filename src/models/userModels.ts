@@ -8,19 +8,16 @@ export interface IUser {
 	email: string;
 	password: string;
 	address: {
-		street: { type: String; required: false };
-		town: { type: String; required: false };
-		postcode: { type: String; required: false };
+		street?: string;
+		town?: string;
+		postcode?: string;
 	};
 	cartData: {
-		items: [
-			{
-				productId: {
-					type: mongoose.Schema.Types.ObjectId;
-					ref: "product";
-				};
-			}
-		];
+		products: {
+			productId: Types.ObjectId;
+			count: number;
+		}[];
+		itemCounts: number;
 	};
 }
 
@@ -57,15 +54,24 @@ const userSchema = new mongoose.Schema<IUserDocument>(
 			postcode: { type: String, required: false },
 		},
 		cartData: {
-			items: [
+			products: [
 				{
 					productId: {
 						type: mongoose.Schema.Types.ObjectId,
 						ref: "Product",
+						required: true,
+					},
+					count: {
+						type: Number,
+						default: 0,
 					},
 					_id: false,
 				},
 			],
+			itemCounts: {
+				type: Number,
+				default: 0,
+			},
 		},
 	},
 	{

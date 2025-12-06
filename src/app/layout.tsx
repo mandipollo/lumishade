@@ -1,3 +1,11 @@
+import {
+	ClerkProvider,
+	SignInButton,
+	SignUpButton,
+	SignedIn,
+	SignedOut,
+	UserButton,
+} from "@clerk/nextjs";
 import { connectToMongoDB } from "../lib/db";
 import { FC } from "react";
 import { Metadata } from "next";
@@ -15,26 +23,28 @@ export const metadata: Metadata = {
 const RootLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
 	connectToMongoDB();
 	return (
-		<html lang="en">
-			<body className=" bg-primaryWhite relative flex flex-col font-light text-primaryDarkText font-openSans ">
-				<StoreProvider>
-					<ToastContainer
-						autoClose={4000}
-						hideProgressBar={true}
-						closeOnClick={true}
-						draggable
-						transition={Slide}
-					/>
-					<header>
-						<Navbar />
-					</header>
-					<main className="mt-[3rem]"> {children}</main>
-					<footer>
-						<Footer />
-					</footer>
-				</StoreProvider>
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang="en">
+				<body className=" bg-primaryWhite relative flex flex-col font-light text-primaryDarkText font-openSans ">
+					<StoreProvider>
+						<ToastContainer
+							autoClose={4000}
+							hideProgressBar={true}
+							closeOnClick={true}
+							draggable
+							transition={Slide}
+						/>
+						<header>
+							<Navbar />
+						</header>
+						<main className="mt-[3rem]"> {children}</main>
+						<footer>
+							<Footer />
+						</footer>
+					</StoreProvider>
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 };
 

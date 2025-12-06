@@ -1,11 +1,8 @@
-"use client";
 import React from "react";
 import ProductCard from "./ProductCard";
 import { ProductProps } from "@/types/ProductType";
 
-const ProductSection: React.FC<{ products: ProductProps[] }> = ({
-	products,
-}) => {
+const ProductSection = ({ products }: { products: ProductProps[] }) => {
 	return (
 		<section className="flex flex-1 ">
 			<ul className="grid grid-cols-3 gap-2 w-full">

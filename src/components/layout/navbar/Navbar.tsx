@@ -4,13 +4,11 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Nav from "./Nav";
 import Link from "next/link";
-import { useAppSelector } from "@/store/hooks";
 import AuthState from "./AuthState";
 
 const Navbar = () => {
-	// cart items
+	// get cart items counts
 
-	const cartItems = useAppSelector(state => state.cart.items);
 	// handle menu state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -103,7 +101,7 @@ const Navbar = () => {
 						href="/cart"
 						className="flex flex-row justify-center items-center"
 					>
-						<p className="font-extralight">CART ({cartItems})</p>
+						<p className="font-extralight">CART</p>
 					</Link>
 
 					<AuthState />
